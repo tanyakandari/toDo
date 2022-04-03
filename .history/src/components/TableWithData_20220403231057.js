@@ -1,21 +1,30 @@
 import React from "react";
 import { map, sumBy, filter, get } from 'lodash';
 import { TextField } from "@material-ui/core";
-import './table.css';
 export default class TableWithData extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
-            data_error: 'Enter JSON',
-            example_json: [
-                {
-                    "id": 1,
-                    "job": "Developer",
-                    "name": "Mary",
-                    "target": 20
-                }],
+            data: [{'id':1,
+            'job':'Developer',
+            'name':'Mary',
+            'target': 20
+            },
+            {
+            'id':2,
+            'job':'Developer',
+            'name':'Mary',
+            'target': 15
+            }, 
+            {
+            'id':3,
+            'job':'Teacher',
+            'name':'Mary',
+            'target': 5
+            }]
+            ,
+            data_error: ''
         }
         this.getHeader = this.getHeader.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -57,31 +66,23 @@ export default class TableWithData extends React.Component {
     render() {
         return (
             <div>
-                <div>Welcome to ToDo App</div>
-                <div> Please enter json in this format. <div><pre>{JSON.stringify(this.state.example_json)}</pre></div></div>
-                <div>
-                    <TextField
-                        id="outlined-multiline-flexible"
-                        label="Enter JSON data"
-                        multiline
-                        maxRows={4}
-                        value={this.state.data_error ? this.state.data : JSON.stringify(this.state.data)}
-                        onChange={this.handleChange}
-                        helperText={this.state.data_error}
-                        style={{ width: '90%' }}
-                    />
-                    {!this.state.data_error &&
-                        <table>
-                            <thead>
-                                <tr>{this.getHeader()}</tr>
-                            </thead>
-                            <tbody>
-                                {this.getRowsData()}
-                            </tbody>
-                        </table>
-                    }
-                </div>
+                <TextField
+                    value={this.isValidJson(this.state.data) ? JSON.stringify(this.state.data) : this.state.data}
+                    variant="filled"
+                    label="Enter JSON data"
+                    onChange={this.handleChange}
+                    helperText={this.state.data_error}
+                />
+                <table>
+                    <thead>
+                        <tr>{this.getHeader()}</tr>
+                    </thead>
+                    <tbody>
+                        {this.getRowsData()}
+                    </tbody>
+                </table>
             </div>
+
         );
     }
 }

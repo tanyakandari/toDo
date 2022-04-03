@@ -8,7 +8,7 @@ export default class TableWithData extends React.Component {
         super(props);
         this.state = {
             data: [],
-            data_error: 'Enter JSON',
+            data_error: '',
             example_json: [
                 {
                     "id": 1,

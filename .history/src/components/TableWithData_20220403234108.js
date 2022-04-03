@@ -8,7 +8,7 @@ export default class TableWithData extends React.Component {
         super(props);
         this.state = {
             data: [],
-            data_error: 'Enter JSON',
+            data_error: '',
             example_json: [
                 {
                     "id": 1,
@@ -70,16 +70,14 @@ export default class TableWithData extends React.Component {
                         helperText={this.state.data_error}
                         style={{ width: '90%' }}
                     />
-                    {!this.state.data_error &&
-                        <table>
-                            <thead>
-                                <tr>{this.getHeader()}</tr>
-                            </thead>
-                            <tbody>
-                                {this.getRowsData()}
-                            </tbody>
-                        </table>
-                    }
+                    <table>
+                        <thead>
+                            <tr>{this.getHeader()}</tr>
+                        </thead>
+                        <tbody>
+                            {this.getRowsData()}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         );

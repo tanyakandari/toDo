@@ -8,7 +8,7 @@ export default class TableWithData extends React.Component {
         super(props);
         this.state = {
             data: [],
-            data_error: 'Enter JSON',
+            data_error: '',
             example_json: [
                 {
                     "id": 1,
@@ -61,25 +61,21 @@ export default class TableWithData extends React.Component {
                 <div> Please enter json in this format. <div><pre>{JSON.stringify(this.state.example_json)}</pre></div></div>
                 <div>
                     <TextField
-                        id="outlined-multiline-flexible"
-                        label="Enter JSON data"
-                        multiline
-                        maxRows={4}
                         value={this.state.data_error ? this.state.data : JSON.stringify(this.state.data)}
+                        variant="filled"
+                        label="Enter JSON data"
                         onChange={this.handleChange}
                         helperText={this.state.data_error}
                         style={{ width: '90%' }}
                     />
-                    {!this.state.data_error &&
-                        <table>
-                            <thead>
-                                <tr>{this.getHeader()}</tr>
-                            </thead>
-                            <tbody>
-                                {this.getRowsData()}
-                            </tbody>
-                        </table>
-                    }
+                    <table>
+                        <thead>
+                            <tr>{this.getHeader()}</tr>
+                        </thead>
+                        <tbody>
+                            {this.getRowsData()}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         );

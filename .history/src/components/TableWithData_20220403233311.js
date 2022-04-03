@@ -8,14 +8,7 @@ export default class TableWithData extends React.Component {
         super(props);
         this.state = {
             data: [],
-            data_error: 'Enter JSON',
-            example_json: [
-                {
-                    "id": 1,
-                    "job": "Developer",
-                    "name": "Mary",
-                    "target": 20
-                }],
+            data_error: ''
         }
         this.getHeader = this.getHeader.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -56,32 +49,27 @@ export default class TableWithData extends React.Component {
 
     render() {
         return (
+            <div>Welcome to ToDo App</div>
+            <div> Please enter json in this format. </div>
             <div>
-                <div>Welcome to ToDo App</div>
-                <div> Please enter json in this format. <div><pre>{JSON.stringify(this.state.example_json)}</pre></div></div>
-                <div>
-                    <TextField
-                        id="outlined-multiline-flexible"
-                        label="Enter JSON data"
-                        multiline
-                        maxRows={4}
-                        value={this.state.data_error ? this.state.data : JSON.stringify(this.state.data)}
-                        onChange={this.handleChange}
-                        helperText={this.state.data_error}
-                        style={{ width: '90%' }}
-                    />
-                    {!this.state.data_error &&
-                        <table>
-                            <thead>
-                                <tr>{this.getHeader()}</tr>
-                            </thead>
-                            <tbody>
-                                {this.getRowsData()}
-                            </tbody>
-                        </table>
-                    }
-                </div>
+                <TextField
+                    value={this.state.data_error ? this.state.data : JSON.stringify(this.state.data)}
+                    variant="filled"
+                    label="Enter JSON data"
+                    onChange={this.handleChange}
+                    helperText={this.state.data_error}
+                    style={{width: '90%'}}
+                />
+                <table>
+                    <thead>
+                        <tr>{this.getHeader()}</tr>
+                    </thead>
+                    <tbody>
+                        {this.getRowsData()}
+                    </tbody>
+                </table>
             </div>
+
         );
     }
 }
